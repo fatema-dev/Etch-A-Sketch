@@ -28,3 +28,9 @@ function generateGrid(size) {
     }
 }
 
+const pixels = document.querySelectorAll(".px");
+const pixelsArr = [...pixels];
+
+for(let pixel in pixels){
+    
+}

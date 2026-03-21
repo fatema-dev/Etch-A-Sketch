@@ -80,3 +80,8 @@ body {
     padding: 20px;
     gap: 650px;
 }
+
+.px:hover {
+    background-color: black;
+    cursor: pointer;
+}

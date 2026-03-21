@@ -4,9 +4,13 @@
 }
 
 body {
-	display: flex;
+    display: flex;
 	justify-content: center;
 	align-items: center;
+
+    height: 100vh;
+
+    background:linear-gradient(180deg, rgb(208, 208, 208),grey);
 }
 
 .container {
@@ -22,7 +26,6 @@ body {
 	width: 900px;
 	height: 900px;
 
-	margin: 25px;
 	padding: 25px 10px 50px;
 
 	border: 2px solid black;

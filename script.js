@@ -40,8 +40,15 @@ const blackPen = document.getElementById("black-pen");
 blackPen.addEventListener("click", () => {
 	const pixels = document.querySelectorAll(".px");
 	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseover", () => {
-			pixel.style.backgroundColor = "black";
+        let hovercount = 0;
+		pixel.addEventListener("mouseenter", () => {
+            hovercount++;
+            if(hovercount < 10){
+                pixel.style.backgroundColor = "black";
+                pixel.style.opacity= `0.${hovercount}`;
+            }else{
+                pixel.style.opacity= 1;
+            }
 		});
 	});
 });
@@ -65,5 +72,7 @@ resetGrid.addEventListener("click", () => {
 	const pixels = document.querySelectorAll(".px");
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = "white";
+        pixel.style.opacity = 1;
 	});
 });
+

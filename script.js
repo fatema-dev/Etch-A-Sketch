@@ -17,6 +17,7 @@ function generateGrid(size) {
 	}
 }
 
+//default grid size
 generateGrid(16);
 
 const resizeGrid = document.getElementById("resize-btn");
@@ -35,17 +36,34 @@ resizeGrid.addEventListener("click", () => {
 	}
 });
 
-
 const blackPen = document.getElementById("black-pen");
 blackPen.addEventListener("click", () => {
-    const pixels = document.querySelectorAll('.px');
-    pixels.forEach((pixel)=> {
-        pixel.addEventListener("mouseover", ()=> {
-            pixel.style.backgroundColor = "black";
-        })
-    });
+	const pixels = document.querySelectorAll(".px");
+	pixels.forEach((pixel) => {
+		pixel.addEventListener("mouseover", () => {
+			pixel.style.backgroundColor = "black";
+		});
+	});
 });
 
+const rainbowPen = document.getElementById("rainbow");
+rainbow.addEventListener("click", () => {
+	const pixels = document.querySelectorAll(".px");
+	pixels.forEach((pixel) => {
+		pixel.addEventListener("mouseover", () => {
+			let max = 256;
+			let r = Math.floor(Math.random() * max); //random number from 1 to 255
+			let g = Math.floor(Math.random() * max);
+			let b = Math.floor(Math.random() * max);
+			pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+		});
+	});
+});
 
-
-
+const resetGrid = document.getElementById("reset-btn");
+resetGrid.addEventListener("click", () => {
+	const pixels = document.querySelectorAll(".px");
+	pixels.forEach((pixel) => {
+		pixel.style.backgroundColor = "white";
+	});
+});

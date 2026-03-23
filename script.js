@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
 let size = 0;
 let input = "";
+let mode = "none";
 
 function generateGrid(size) {
 	grid.innerHTML = "";
@@ -13,6 +14,26 @@ function generateGrid(size) {
 			pixel.style.width = `${pxSize}px`;
 			pixel.style.height = `${pxSize}px`;
 			grid.appendChild(pixel);
+
+			pixel.dataset.hovercount = 0;
+			pixel.addEventListener("mouseenter", () => {
+				let count = Number(pixel.dataset.hovercount);
+				if (mode == "black") {
+					pixel.style.backgroundColor = "black";
+					if (count < 10) {
+						count++; 
+						pixel.style.opacity = count / 10; 
+						pixel.dataset.hovercount = count; 
+					}
+				}else if (mode == "rainbow") {
+					let max = 256;
+					let r = Math.floor(Math.random() * max); 
+					let g = Math.floor(Math.random() * max);
+					let b = Math.floor(Math.random() * max);
+					pixel.style.opacity = 1;
+					pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+				}
+			});
 		}
 	}
 }
@@ -37,43 +58,17 @@ resizeGrid.addEventListener("click", () => {
 });
 
 const blackPen = document.getElementById("black-pen");
-blackPen.addEventListener("click", () => {
-	const pixels = document.querySelectorAll(".px");
-	pixels.forEach((pixel) => {
-        let hovercount = 0;
-		pixel.addEventListener("mouseenter", () => {
-            hovercount++;
-            if(hovercount < 10){
-                pixel.style.backgroundColor = "black";
-                pixel.style.opacity= `0.${hovercount}`;
-            }else{
-                pixel.style.opacity= 1;
-            }
-		});
-	});
-});
+blackPen.addEventListener("click", () => (mode = "black"));
 
 const rainbowPen = document.getElementById("rainbow");
-rainbow.addEventListener("click", () => {
-	const pixels = document.querySelectorAll(".px");
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseover", () => {
-			let max = 256;
-			let r = Math.floor(Math.random() * max); //random number from 1 to 255
-			let g = Math.floor(Math.random() * max);
-			let b = Math.floor(Math.random() * max);
-			pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-            pixel.style.opacity= 1;
-		});
-	});
-});
+rainbowPen.addEventListener("click", () => (mode = "rainbow"));
 
 const resetGrid = document.getElementById("reset-btn");
 resetGrid.addEventListener("click", () => {
 	const pixels = document.querySelectorAll(".px");
 	pixels.forEach((pixel) => {
+        pixel.dataset.hovercount = 0;
 		pixel.style.backgroundColor = "white";
-        pixel.style.opacity = 1;
+		pixel.style.opacity = 1;
 	});
 });
-

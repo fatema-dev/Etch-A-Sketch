@@ -63,6 +63,7 @@ rainbow.addEventListener("click", () => {
 			let g = Math.floor(Math.random() * max);
 			let b = Math.floor(Math.random() * max);
 			pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            pixel.style.opacity= 1;
 		});
 	});
 });

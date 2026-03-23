@@ -21,13 +21,13 @@ function generateGrid(size) {
 				if (mode == "black") {
 					pixel.style.backgroundColor = "black";
 					if (count < 10) {
-						count++; 
-						pixel.style.opacity = count / 10; 
-						pixel.dataset.hovercount = count; 
+						count++;
+						pixel.style.opacity = count / 10;
+						pixel.dataset.hovercount = count;
 					}
-				}else if (mode == "rainbow") {
+				} else if (mode == "rainbow") {
 					let max = 256;
-					let r = Math.floor(Math.random() * max); 
+					let r = Math.floor(Math.random() * max);
 					let g = Math.floor(Math.random() * max);
 					let b = Math.floor(Math.random() * max);
 					pixel.style.opacity = 1;
@@ -66,9 +66,13 @@ rainbowPen.addEventListener("click", () => (mode = "rainbow"));
 const resetGrid = document.getElementById("reset-btn");
 resetGrid.addEventListener("click", () => {
 	const pixels = document.querySelectorAll(".px");
+	grid.classList.add("shake");
 	pixels.forEach((pixel) => {
-        pixel.dataset.hovercount = 0;
+		pixel.dataset.hovercount = 0;
 		pixel.style.backgroundColor = "white";
 		pixel.style.opacity = 1;
 	});
+    container.setTimeout(() => {
+        grid.classList.remove("shake");
+    }, 500);
 });

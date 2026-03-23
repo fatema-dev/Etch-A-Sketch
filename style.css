@@ -99,6 +99,7 @@ button {
 	color: #000000;
 	border: none;
 	border-radius: 50%;
+    border: 2px solid rgb(223, 223, 60);
 
     width: 85px;
     height: 85px;
@@ -118,4 +119,16 @@ button:hover {
 button:focus {
     background: rgb(245, 245, 34);
     box-shadow: 0px 0px 5px 2px white;
+}
+
+@keyframes shake-frame {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, 5px) rotate(1deg); }
+  50% { transform: translate(-5px, -5px) rotate(-1deg); }
+  75% { transform: translate(5px, -5px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shake {
+  animation: shake-frame 0.5s ease-in-out;
 }

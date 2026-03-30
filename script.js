@@ -66,13 +66,20 @@ rainbowPen.addEventListener("click", () => (mode = "rainbow"));
 const resetGrid = document.getElementById("reset-btn");
 resetGrid.addEventListener("click", () => {
 	const pixels = document.querySelectorAll(".px");
+	
+	grid.classList.remove("shake");
+
+	grid.offsetWidth; 
+
 	grid.classList.add("shake");
 	pixels.forEach((pixel) => {
 		pixel.dataset.hovercount = 0;
 		pixel.style.backgroundColor = "white";
 		pixel.style.opacity = 1;
 	});
-    container.setTimeout(() => {
+    
+	setInterval(() => {
         grid.classList.remove("shake");
-    }, 500);
+    }, 700);
+
 });
